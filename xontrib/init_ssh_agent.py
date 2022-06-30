@@ -1,13 +1,12 @@
+import os
 import subprocess
 
 __all__ = ()
 
-# Launches the ssh-agent if no PID or SOCK is in the ENV
+# Launches the ssh-agent if the socket path cannot be found
 
-if not __xonsh__.env.get('SSH_AGENT_PID', False):
-
-    output = subprocess.check_output('ssh-agent')
-
+if not os.path.exists('/tmp/xontrib_init_ssh_agent.sock'):
+    output = subprocess.check_output('ssh-agent -a /tmp/xontrib_init_ssh_agent.sock')
     output = output.decode("utf-8")
     output = output.split(';')
     # Split the output on ; which seperates the commands resulting in a List that looks like this:
@@ -16,5 +15,10 @@ if not __xonsh__.env.get('SSH_AGENT_PID', False):
     SSH_AUTH_SOCK = output[0].split('=')[1]
     SSH_AGENT_PID = output[2].split('=')[1]
 
-    __xonsh__.env['SSH_AUTH_SOCK'] = SSH_AUTH_SOCK
+    __xonsh__.env['SSH_AUTH_SOCK'] = '/tmp/xontrib_init_ssh_agent.sock'
     __xonsh__.env['SSH_AGENT_PID'] = SSH_AGENT_PID
+
+else:
+
+    __xonsh__.env['SSH_AUTH_SOCK'] = '/tmp/xontrib_init_ssh_agent.sock'
+    __xonsh__.env['SSH_AGENT_PID'] = subprocess.check_output('pidof').decode('utf-8')

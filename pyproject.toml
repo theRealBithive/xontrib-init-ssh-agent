@@ -1,7 +1,7 @@
 
 [project]
 name = "xontrib-init-ssh-agent"
-version = "0.0.3"
+version = "0.0.4"
 license = {file = "LICENSE"}
 description = "Inits ssh-agent"
 classifiers = [
