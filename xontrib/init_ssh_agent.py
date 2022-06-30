@@ -2,16 +2,19 @@ import subprocess
 
 __all__ = ()
 
-# Launches the ssh-agent
-output = subprocess.check_output('ssh-agent')
+# Launches the ssh-agent if no PID or SOCK is in the ENV
 
-output = output.decode("utf-8")
-output = output.split(';')
-# Split the output on ; which seperates the commands resulting in a List that looks like this:
-# ['SSH_AUTH_SOCK=/tmp/ssh-XXXXXXIOvdyN/agent.20259', ' export SSH_AUTH_SOCK', '\nSSH_AGENT_PID=20260', ' export SSH_AGENT_PID', '\necho Agent pid 20260', '\n']
+if not __xonsh__.env.get('SSH_AGENT_PID', False) or not __xonsh__.env.get('SSH_AUTH_SOCK', False):
 
-SSH_AUTH_SOCK = output[0].split('=')[1]
-SSH_AGENT_PID = output[2].split('=')[1]
+    output = subprocess.check_output('ssh-agent')
 
-__xonsh__.env['SSH_AUTH_SOCK'] = SSH_AUTH_SOCK
-__xonsh__.env['SSH_AGENT_PID'] = SSH_AGENT_PID
+    output = output.decode("utf-8")
+    output = output.split(';')
+    # Split the output on ; which seperates the commands resulting in a List that looks like this:
+    # ['SSH_AUTH_SOCK=/tmp/ssh-XXXXXXIOvdyN/agent.20259', ' export SSH_AUTH_SOCK', '\nSSH_AGENT_PID=20260', ' export SSH_AGENT_PID', '\necho Agent pid 20260', '\n']
+
+    SSH_AUTH_SOCK = output[0].split('=')[1]
+    SSH_AGENT_PID = output[2].split('=')[1]
+
+    __xonsh__.env['SSH_AUTH_SOCK'] = SSH_AUTH_SOCK
+    __xonsh__.env['SSH_AGENT_PID'] = SSH_AGENT_PID
