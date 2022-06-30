@@ -21,4 +21,4 @@ if not os.path.exists('/tmp/xontrib_init_ssh_agent.sock'):
 else:
 
     __xonsh__.env['SSH_AUTH_SOCK'] = '/tmp/xontrib_init_ssh_agent.sock'
-    __xonsh__.env['SSH_AGENT_PID'] = subprocess.check_output('pidof').decode('utf-8')
+    __xonsh__.env['SSH_AGENT_PID'] = subprocess.check_output(['pidof', 'ssh-agent']).decode('utf-8').replace('\n', "")
