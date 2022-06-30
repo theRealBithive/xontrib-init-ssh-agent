@@ -1,0 +1,15 @@
+# Changes here will be overwritten by Copier
+_commit: 1afa205
+_src_path: gh:xonsh/xontrib-template
+email: bithive@bithive.space
+enable_pre_commit_hooks: true
+full_name: Bithive
+github_username: theRealBithive
+package_manager: setuptools
+project_name: init-ssh-agent
+project_package_name: init_ssh_agent
+project_repo_name: xontrib-init-ssh-agent
+project_short_description: Inits ssh-agent
+pure_py: true
+version: 0.0.1
+
