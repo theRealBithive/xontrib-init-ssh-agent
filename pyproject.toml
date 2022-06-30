@@ -1,9 +1,9 @@
 
 [project]
 name = "xontrib-init-ssh-agent"
-version = "0.0.6"
+version = "1.0.1"
 license = {file = "LICENSE"}
-description = "Inits ssh-agent"
+description = "Starts the ssh-agent and sources its PID and SOCK. Checks if xonsh already started an agent and updates the environment"
 classifiers = [
     "Programming Language :: Python :: 3",
     "License :: OSI Approved :: MIT License",
