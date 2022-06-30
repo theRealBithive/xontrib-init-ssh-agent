@@ -6,7 +6,7 @@ __all__ = ()
 # Launches the ssh-agent if the socket path cannot be found
 
 if not os.path.exists('/tmp/xontrib_init_ssh_agent.sock'):
-    output = subprocess.check_output('ssh-agent -a /tmp/xontrib_init_ssh_agent.sock')
+    output = subprocess.check_output(['ssh-agent', '-a', '/tmp/xontrib_init_ssh_agent.sock'])
     output = output.decode("utf-8")
     output = output.split(';')
     # Split the output on ; which seperates the commands resulting in a List that looks like this:
