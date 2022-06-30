@@ -4,7 +4,7 @@ __all__ = ()
 
 # Launches the ssh-agent if no PID or SOCK is in the ENV
 
-if not __xonsh__.env.get('SSH_AGENT_PID', False) or not __xonsh__.env.get('SSH_AUTH_SOCK', False):
+if not __xonsh__.env.get('SSH_AGENT_PID', False):
 
     output = subprocess.check_output('ssh-agent')
 
