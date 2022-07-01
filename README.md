@@ -1,11 +1,6 @@
-<p align="center">
-Inits ssh-agent
-</p>
+## Motivation
 
-<p align="center">  
-If you like the idea click ⭐ on the repo and <a href="https://twitter.com/intent/tweet?text=Nice%20xontrib%20for%20the%20xonsh%20shell!&url=https://github.com/theRealBithive/xontrib-init-ssh-agent" target="_blank">tweet</a>.
-</p>
-
+I needed a way to start ssh-agent and keep it across terminal sessions. Most desktop environments will do this for you.
 
 ## Installation
 
@@ -22,6 +17,7 @@ xpip install xontrib-init-ssh-agent
 xontrib load init_ssh_agent
 ```
 
+To kill the ssh_agent use the `ssh-agent -k` command. n.b. the environment variables will not be unset and a new agent is only started with another terminal session.
 
 
 ## Known issues
